@@ -141,5 +141,7 @@ public class Reservation {
     public void setProductId(Integer productId) {
         this.productId = productId;
     }
+}
+
 }</code></pre> 
 
