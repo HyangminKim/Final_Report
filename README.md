@@ -103,5 +103,43 @@ public class Reservation {
         Application.applicationContext.getBean(market.external.ProductService.class)
             .productStatusChange(product);
     }
+
+
+    @PostUpdate
+    public void onPostUpdate() {
+        ReservationCanceled reservationCanceled = new ReservationCanceled();
+        BeanUtils.copyProperties(this, reservationCanceled);
+        reservationCanceled.publish();
+
+        Product product = new Product();
+
+        product.setId(this.getProductId());
+
+        product.setProductStatus("01"); // 예약됨
+
+        ProductService bookService = Application.applicationContext.getBean(ProductService.class);
+        bookService.productStatusChange(product);
+    }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public String getReservationStatus() {
+        return reservationStatus;
+    }
+
+    public void setReservationStatus(String reservationStatus) {
+        this.reservationStatus = reservationStatus;
+    }
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
 }</code></pre> 
 
