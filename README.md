@@ -38,23 +38,23 @@ http://msaez.io/#/storming/cVNuZs0oJidKR8D7ZWW4anjQhQA2/mine/83e2fd722bb1a93822e
 분석/설계 단계에서 도출된 헥사고날 아키텍처에 따라, 각 BC별로 대변되는 마이크로 서비스들을 스프링부트로 구현하였다. 구현한 각 서비스를 로컬에서 실행하는 방법은 아래와 같다 (각자의 포트넘버는 8081 ~ 808n 이다)
 
 cd Reservation<br>
-mvn spring-boot:run<br>
-예약 시스템: https://github.com/HyangminKim/Final_Reservation<br>
+mvn spring-boot:run</br>
+예약 시스템: https://github.com/HyangminKim/Final_Reservation</br>
 
 cd Payment<br>
-mvn spring-boot:run<br>
-결제 시스템: https://github.com/HyangminKim/Final_Payment<br>
+mvn spring-boot:run</br>
+결제 시스템: https://github.com/HyangminKim/Final_Payment</br>
 
 cd Product<br>
-mvn spring-boot:run<br>
-등록 시스템: https://github.com/HyangminKim/Final_Product<br>
+mvn spring-boot:run</br>
+등록 시스템: https://github.com/HyangminKim/Final_Product</br>
 
 cd Notice<br>
-mvn spring-boot:run<br>
-알림 시스템: https://github.com/HyangminKim/Final_Notice<br>
+mvn spring-boot:run</br>
+알림 시스템: https://github.com/HyangminKim/Final_Notice</br>
 
-cd MyPage spring-boot:run<br>
-마이 페이지 : https://github.com/HyangminKim/Final_MyPage<br>
+cd MyPage spring-boot:run </br>
+마이 페이지 : https://github.com/HyangminKim/Final_MyPage</br>
 
 ### DDD의 적용
 
