@@ -49,12 +49,59 @@ cd Product<br>
 mvn spring-boot:run</br>
 등록 시스템: https://github.com/HyangminKim/Final_Product</br>
 
-cd Notice<br>
+cd Notice</br>
 mvn spring-boot:run</br>
 알림 시스템: https://github.com/HyangminKim/Final_Notice</br>
 
-cd MyPage spring-boot:run </br>
+cd MyPage </br>
+mvn spring-boot:run </br>
 마이 페이지 : https://github.com/HyangminKim/Final_MyPage</br>
 
 ### DDD의 적용
+
+<pre><code>{
+package market;
+
+import javax.persistence.*;
+
+import market.external.Product;
+import market.external.ProductService;
+import org.springframework.beans.BeanUtils;
+import java.util.List;
+
+@Entity
+@Table(name="Reservation_table")
+public class Reservation {
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
+    private String reservationStatus;
+    private Integer productId;
+    private String type;
+
+    public String getType(){ return type;}
+    public void setType(String type){this.type = type;}
+
+    @PostPersist
+    public void onPostPersist(){
+        Reserved reserved = new Reserved();
+        BeanUtils.copyProperties(this, reserved);
+        reserved.publish();
+
+        //Following code causes dependency to external APIs
+        // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
+        System.out.println("Type : "+ type);
+        market.external.Product product = new market.external.Product();
+        product.setId(this.getProductId());
+        if(type.equals("Reserved")){
+            product.setProductStatus("02");
+        }else{
+            product.setProductStatus("01");
+        }
+        // mappings goes here
+        Application.applicationContext.getBean(market.external.ProductService.class)
+            .productStatusChange(product);
+    }
+}</code></pre> 
 
