@@ -58,7 +58,8 @@ mvn spring-boot:run </br>
 마이 페이지 : https://github.com/HyangminKim/Final_MyPage</br>
 
 ### DDD의 적용
-
+각 서비스내에 도출된 핵심 Aggregate Root 객체를 Entity 로 선언하였다</br>
+이때 가능한 현업에서 사용하는 언어 (유비쿼터스 랭귀지)를 그대로 사용하려고 노력했다. 
 <pre><code>{
 package market;
 
@@ -70,70 +71,62 @@ import org.springframework.beans.BeanUtils;
 import java.util.List;
 
 @Entity
-@Table(name="Reservation_table")
-public class Reservation {
+@Table(name="Payment_table")
+public class Payment {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
-    private String reservationStatus;
+    private Integer id;
+    private Integer reservationId;
     private Integer productId;
+    private String paymentStatus;
     private String type;
 
-    public String getType(){ return type;}
-    public void setType(String type){this.type = type;}
-
-    @PostPersist
-    public void onPostPersist(){
-        Reserved reserved = new Reserved();
-        BeanUtils.copyProperties(this, reserved);
-        reserved.publish();
-
-        //Following code causes dependency to external APIs
-        // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
-        System.out.println("Type : "+ type);
-        market.external.Product product = new market.external.Product();
-        product.setId(this.getProductId());
-        if(type.equals("Reserved")){
-            product.setProductStatus("02");
-        }else{
-            product.setProductStatus("01");
-        }
-        // mappings goes here
-        Application.applicationContext.getBean(market.external.ProductService.class)
-            .productStatusChange(product);
+    public String getType() {
+        return type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
 
     @PostUpdate
-    public void onPostUpdate() {
-        ReservationCanceled reservationCanceled = new ReservationCanceled();
-        BeanUtils.copyProperties(this, reservationCanceled);
-        reservationCanceled.publish();
+    public void onPostUpdate(){
+
+        Paid paid = new Paid();
+        BeanUtils.copyProperties(this, paid);
+        paid.publish();
 
         Product product = new Product();
-
         product.setId(this.getProductId());
+        product.setProductStatus("soldOut");
 
-        product.setProductStatus("01"); // 예약됨
+        ProductService productService = Application.applicationContext.getBean(ProductService.class);
+        productService.productStatusChange(product);
 
-        ProductService bookService = Application.applicationContext.getBean(ProductService.class);
-        bookService.productStatusChange(product);
     }
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
-    public String getReservationStatus() {
-        return reservationStatus;
+    public Integer getReservationId() {
+        return reservationId;
     }
 
-    public void setReservationStatus(String reservationStatus) {
-        this.reservationStatus = reservationStatus;
+    public void setReservationId(Integer reservationId) {
+        this.reservationId = reservationId;
     }
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
     public Integer getProductId() {
         return productId;
     }
@@ -142,6 +135,14 @@ public class Reservation {
         this.productId = productId;
     }
 }
-
 }</code></pre> 
 
+Entity Pattern 과 Repository Pattern 을 적용하여 JPA 를 통하여 다양한 데이터소스 유형 (RDB or NoSQL) 에 대한 별도의 처리가 없도록 데이터 접근 어댑터를 자동 생성하기 위하여 Spring Data REST 의 RestRepository 를 적용하였다</br>
+<pre><code>{
+package market;
+
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+public interface PaymentRepository extends PagingAndSortingRepository<Payment, Integer>{
+}
+}</code></pre> 
