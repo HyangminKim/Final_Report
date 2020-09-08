@@ -142,35 +142,17 @@ hystrix:
 부하테스터 siege 툴을 통한 서킷 브레이커 동작 확인 </br>
 동시사용자 100명</br>
 60초 동안 실시</br>
-<pre><code>$ siege -c100 -t60S -r10 --content-type "application/json" 'http://reservation:8080/reservation POST {"productId": "2",, "reservationStatus" : "01" }'
+<pre><code>$ siege -c100 -t60S -r10 --content-type "application/json" 'http://reservation:8080/reservation POST {"productId": "2",, "reservationStatus" : "01" }'</code></pre>
+![image](https://user-images.githubusercontent.com/61259464/92451904-534d9c00-f1f8-11ea-9055-7729509478cf.png)
 
-Lifting the server siege...
-Transactions:                   1067 hits
-Availability:                  74.91 %
-Elapsed time:                  59.46 secs
-Data transferred:               0.37 MB
-Response time:                  5.36 secs
-Transaction rate:              17.94 trans/sec
-Throughput:                     0.01 MB/sec
-Concurrency:                   96.13
-Successful transactions:        1067
-Failed transactions:             285
-Longest transaction:            7.01
-Shortest transaction:           0.02
-</code></pre>
 
 운영시스템은 죽지 않고 지속적으로 CB 에 의하여 적절히 회로가 열림과 닫힘이 벌어지면서 자원을 보호하고 있음을 보여줌. 
 
 ### 오토스케일 아웃
-앞서 CB 는 시스템을 안정되게 운영할 수 있게 해줬지만 사용자의 요청을 100% 받아들여주지 못했기 때문에 이에 대한 보완책으로 자동화된 확장 기능을 적용하고자 한다.
-
 상품 서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 15프로를 넘어서면 replica 를 10개까지 늘려준다:
 <pre><code>kubectl autoscale deploy product --min=1 --max=10 --cpu-percent=15</code></pre>
 CB 에서 했던 방식대로 워크로드를 2분 동안 걸어준다.
 <pre><code>$ siege -c100 -t60S -r10 --content-type "application/json" 'http://reservation:8082/reservation POST {"productId": "2", "reservationStatus" : "01" }'</code></pre>
-![image](https://user-images.githubusercontent.com/61259464/92451904-534d9c00-f1f8-11ea-9055-7729509478cf.png)
-
-
 
 ### 무정지 재배포
 모든 프로젝트의 readiness probe 및 liveness probe 설정 추가
