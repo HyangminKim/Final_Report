@@ -81,7 +81,7 @@ http http://localhost:8082/reservation productId=2 reservationStatus=01</code></
 ![image](https://user-images.githubusercontent.com/61259464/92431177-c8f24180-f1d1-11ea-9274-d6cbc806b72b.png)
 
 ### POD 실행 화면
-![image](https://user-images.githubusercontent.com/61259464/92436869-aa477700-f1e0-11ea-8fa9-2ab6736ecdd5.png)
+![image](https://user-images.githubusercontent.com/61259464/92437364-b08a2300-f1e1-11ea-8965-802ecbe92f17.png)
 
 ### 구현
 <pre><code>http http://localhost:8081/product productName=Noodle productStatus=01
