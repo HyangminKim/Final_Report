@@ -57,9 +57,8 @@ cd MyPage </br>
 mvn spring-boot:run </br>
 마이 페이지 : https://github.com/HyangminKim/Final_MyPage</br>
 
-*1.판매자가 상품을 등록한다. 
-<pre><code>
-http http://localhost:8081/product productName=Noodle productStatus=01
+
+1.판매자가 상품을 등록한다. 
+<pre><code>http http://localhost:8081/product productName=Noodle productStatus=01
 http http://localhost:8081/product productName=Desk productStatus=01
-http http://localhost:8081/product productName=Coffee productStatus=01
-</code></pre>
+http http://localhost:8081/product productName=Coffee productStatus=01</code></pre>
