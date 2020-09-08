@@ -86,12 +86,10 @@ http http://reservation:8080/reservation productId=2 reservationStatus=01</code>
 ### 5. 구매자가 예약한 상품을 결제한다 
 <pre><code>http PATCH http://payment:8080/paid id=1 reservationId=1 productId=3 paymentStatus=02</code></pre>
 결과(Payment)</br>
-![image](https://user-images.githubusercontent.com/61259464/92438412-b97bf400-f1e3-11ea-85c7-bd0d945a9e28.png)
+![image](https://user-images.githubusercontent.com/61259464/92441249-d666f600-f1e8-11ea-9744-f9e0650b34f8.png)
 
 ### 6. 결제 후 상품 정보를 변경한다 
-결과(Reservation, Product)</br>
-![image](https://user-images.githubusercontent.com/61259464/92441249-d666f600-f1e8-11ea-9744-f9e0650b34f8.png)
-</br>
+결과( Product)</br>
 ![image](https://user-images.githubusercontent.com/61259464/92441416-25149000-f1e9-11ea-9258-dd75515370ba.png)
 
 ### 7. 구매자가 예약을 취소한다, 8. 취소 후 상품 정보를 상태를 변경한다
