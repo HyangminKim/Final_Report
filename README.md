@@ -168,15 +168,6 @@ Shortest transaction:           0.02
 <pre><code>kubectl autoscale deploy product --min=1 --max=10 --cpu-percent=15</code></pre>
 CB 에서 했던 방식대로 워크로드를 2분 동안 걸어준다.
 <pre><code>$ siege -c100 -t60S -r10 --content-type "application/json" 'http://reservation:8082/reservation POST {"productId": "2", "reservationStatus" : "01" }'</code></pre>
-오토스케일이 어떻게 되고 있는지 모니터링을 걸어둔다:
-<pre><code>kubectl get deploy pay -w</code></pre>
-어느정도 시간이 흐른 후 (약 30초) 스케일 아웃이 벌어지는 것을 확인할 수 있다:
-<pre><code>NAME    DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-pay     1         1         1            1           17s
-pay     1         2         1            1           45s
-pay     1         4         1            1           1m
-:</code></pre>
-siege 의 로그를 보아도 전체적인 성공률이 높아진 것을 확인 할 수 있다. </br>
 ![image](https://user-images.githubusercontent.com/61259464/92451904-534d9c00-f1f8-11ea-9055-7729509478cf.png)
 
 
