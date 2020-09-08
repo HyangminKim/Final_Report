@@ -145,18 +145,18 @@ hystrix:
 <pre><code>$ siege -c100 -t60S -r10 --content-type "application/json" 'http://reservation:8080/reservation POST {"productId": "2",, "reservationStatus" : "01" }'
 
 Lifting the server siege...
-Transactions:                   1067 hits
-Availability:                  74.91 %
-Elapsed time:                  59.46 secs
-Data transferred:               0.37 MB
-Response time:                  5.36 secs
-Transaction rate:              17.94 trans/sec
-Throughput:                     0.01 MB/sec
-Concurrency:                   96.13
-Successful transactions:        1067
-Failed transactions:             285
-Longest transaction:            7.01
-Shortest transaction:           0.02</code></pre>
+Transactions:                  55987 hits
+Availability:                 100.00 %
+Elapsed time:                  59.86 secs
+Data transferred:              22.80 MB
+Response time:                  0.11 secs
+Transaction rate:             935.30 trans/sec
+Throughput:                     0.38 MB/sec
+Concurrency:                   99.73
+Successful transactions:           0
+Failed transactions:               0
+Longest transaction:            0.72
+Shortest transaction:           0.00</code></pre>
 
 운영시스템은 죽지 않고 지속적으로 CB 에 의하여 적절히 회로가 열림과 닫힘이 벌어지면서 자원을 보호하고 있음을 보여줌. 하지만, 74.21% 가 성공.
 ### 오토스케일 아웃
