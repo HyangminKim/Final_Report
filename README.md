@@ -66,5 +66,6 @@ Payment Status: 01(unpaid) 02(paid)</code></pre>
 <pre><code>http http://localhost:8081/product productName=Noodle productStatus=01
 http http://localhost:8081/product productName=Desk productStatus=01
 http http://localhost:8081/product productName=Coffee productStatus=01</code></pre>
-
+결과(product)
+![image](https://user-images.githubusercontent.com/61259464/92427678-136ec080-f1c8-11ea-97ac-109b52be95d7.png)
 
