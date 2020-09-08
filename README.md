@@ -121,10 +121,6 @@ hystrix:
 60초 동안 실시</br>
 <pre><code>$ siege -c100 -t60S -r10 --content-type "application/json" 'http://reservation:8080/reservation POST {"productId": "2",, "reservationStatus" : "01" }'
 
-Windows 안에서 작동하는 Ubuntu에서 siege 실행시 "[error] unable to set close control sock.c:141: Invalid argument" 이 발생하여 중간 과정은 알 수 없음.
-
-그러나 아래와 같은 결과를 확인.
-
 Lifting the server siege...
 Transactions:                   1067 hits
 Availability:                  74.91 %
@@ -165,7 +161,7 @@ Transaction rate:	       17.15 trans/sec
 Throughput:		        0.01 MB/sec
 Concurrency:		       96.02</code></pre>
 
-###무정지 재배포
+### 무정지 재배포
 모든 프로젝트의 readiness probe 및 liveness probe 설정 추가
 <pre><code>readinessProbe:
   httpGet:
