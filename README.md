@@ -81,33 +81,33 @@ http http://product:8080/product  productName=Coffee productStatus=01</code></pr
 #### 2.고객은 등록된 상품을 예약한다
 <pre><code>http http://reservation:8080/reservation productId=3 reservationStatus=01
 http http://reservation:8080/reservation productId=2 reservationStatus=01</code></pre>
-결과(Reservation)
+결과(Reservation)</br>
 ![image](https://user-images.githubusercontent.com/61259464/92438260-6e61e100-f1e3-11ea-8d07-3ca1c8cd1add.png)
 
 #### 3. 예약 후 상품 상태가 변경 된다
-결과(Product)
+결과(Product)</br>
 ![image](https://user-images.githubusercontent.com/61259464/92438303-85083800-f1e3-11ea-86e0-c37ec6a85976.png)
 
 #### 4. 예약 후 결제 정보가 생성 된다
-결과(Payment)
+결과(Payment)</br>
 ![image](https://user-images.githubusercontent.com/61259464/92438378-a8cb7e00-f1e3-11ea-82c9-ad2062f7e47c.png)
 
 ### 5. 구매자가 예약한 상품을 결제한다 
 <pre><code>http PATCH http://payment:8080/paid id=1 reservationId=1 productId=3 paymentStatus=02</code></pre>
-결과(Payment)
+결과(Payment)</br>
 ![image](https://user-images.githubusercontent.com/61259464/92438412-b97bf400-f1e3-11ea-85c7-bd0d945a9e28.png)
 
 ### 6. 결제 후 상품 정보를 변경한다 
-결과(Product)
+결과(Product)</br>
 ![image](https://user-images.githubusercontent.com/61259464/92438496-e7613880-f1e3-11ea-8473-d2340f7297bf.png)
 
 ### 7. 구매자가 예약을 취소한다, 8. 취소 후 상품 정보를 상태를 변경한다
 
-결과(Reservation) type=Cancled
+결과(Reservation) type=Cancled</br>
 ![image](https://user-images.githubusercontent.com/61259464/92438600-1aa3c780-f1e4-11ea-898a-617046c97a3d.png)
 
 ### 9. 구매자는 예약 및 결제 상태를 중간중간 조회한다
-결과(MyPage)
+결과(MyPage)</br>
 ![image](https://user-images.githubusercontent.com/61259464/92438783-6ce4e880-f1e4-11ea-9bbf-3827d2820618.png)
 
 ### CI/CD 설정
