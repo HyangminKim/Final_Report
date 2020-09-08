@@ -142,8 +142,23 @@ hystrix:
 부하테스터 siege 툴을 통한 서킷 브레이커 동작 확인 </br>
 동시사용자 100명</br>
 60초 동안 실시</br>
-<pre><code>$ siege -c100 -t60S -r10 --content-type "application/json" 'http://reservation:8080/reservation POST {"productId": "2",, "reservationStatus" : "01" }'/code></pre>
-![image](https://user-images.githubusercontent.com/61259464/92451904-534d9c00-f1f8-11ea-9055-7729509478cf.png)
+<pre><code>$ siege -c100 -t60S -r10 --content-type "application/json" 'http://reservation:8080/reservation POST {"productId": "2",, "reservationStatus" : "01" }'
+
+Lifting the server siege...
+Transactions:                   1067 hits
+Availability:                  74.91 %
+Elapsed time:                  59.46 secs
+Data transferred:               0.37 MB
+Response time:                  5.36 secs
+Transaction rate:              17.94 trans/sec
+Throughput:                     0.01 MB/sec
+Concurrency:                   96.13
+Successful transactions:        1067
+Failed transactions:             285
+Longest transaction:            7.01
+Shortest transaction:           0.02
+</code></pre>
+
 운영시스템은 죽지 않고 지속적으로 CB 에 의하여 적절히 회로가 열림과 닫힘이 벌어지면서 자원을 보호하고 있음을 보여줌. 
 
 ### 오토스케일 아웃
@@ -161,15 +176,10 @@ pay     1         1         1            1           17s
 pay     1         2         1            1           45s
 pay     1         4         1            1           1m
 :</code></pre>
-siege 의 로그를 보아도 전체적인 성공률이 높아진 것을 확인 할 수 있다.
-<pre><code>Transactions:		        5078 hits
-Availability:		       92.45 %
-Elapsed time:		       120 secs
-Data transferred:	        0.34 MB
-Response time:		        5.60 secs
-Transaction rate:	       17.15 trans/sec
-Throughput:		        0.01 MB/sec
-Concurrency:		       96.02</code></pre>
+siege 의 로그를 보아도 전체적인 성공률이 높아진 것을 확인 할 수 있다. </br>
+![image](https://user-images.githubusercontent.com/61259464/92451904-534d9c00-f1f8-11ea-9055-7729509478cf.png)
+
+
 
 ### 무정지 재배포
 모든 프로젝트의 readiness probe 및 liveness probe 설정 추가
