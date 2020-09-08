@@ -67,7 +67,7 @@ mvn spring-boot:run </br>
 http http://product:8080/product  productName=Tv productStatus=01
 http http://product:8080/product  productName=Coffee productStatus=01</code></pre>
 결과(product)</br>
-![image](https://user-images.githubusercontent.com/61259464/92440354-55f3c580-f1e7-11ea-89ff-070f46846777.png)
+![image](https://user-images.githubusercontent.com/61259464/92441979-1f6b7a00-f1ea-11ea-8dba-b8090b0a441f.png)
 
 #### 2.고객은 등록된 상품을 예약한다
 <pre><code>http http://reservation:8080/reservation productId=3 reservationStatus=01
