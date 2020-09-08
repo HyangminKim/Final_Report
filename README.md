@@ -142,23 +142,10 @@ hystrix:
 부하테스터 siege 툴을 통한 서킷 브레이커 동작 확인 </br>
 동시사용자 100명</br>
 60초 동안 실시</br>
-<pre><code>$ siege -c100 -t60S -r10 --content-type "application/json" 'http://reservation:8080/reservation POST {"productId": "2",, "reservationStatus" : "01" }'
+<pre><code>$ siege -c100 -t60S -r10 --content-type "application/json" 'http://reservation:8080/reservation POST {"productId": "2",, "reservationStatus" : "01" }'/code></pre>
+![image](https://user-images.githubusercontent.com/61259464/92451904-534d9c00-f1f8-11ea-9055-7729509478cf.png)
+운영시스템은 죽지 않고 지속적으로 CB 에 의하여 적절히 회로가 열림과 닫힘이 벌어지면서 자원을 보호하고 있음을 보여줌. 
 
-Lifting the server siege...
-Transactions:                  55987 hits
-Availability:                 100.00 %
-Elapsed time:                  59.86 secs
-Data transferred:              22.80 MB
-Response time:                  0.11 secs
-Transaction rate:             935.30 trans/sec
-Throughput:                     0.38 MB/sec
-Concurrency:                   99.73
-Successful transactions:           0
-Failed transactions:               0
-Longest transaction:            0.72
-Shortest transaction:           0.00</code></pre>
-
-운영시스템은 죽지 않고 지속적으로 CB 에 의하여 적절히 회로가 열림과 닫힘이 벌어지면서 자원을 보호하고 있음을 보여줌. 하지만, 74.21% 가 성공.
 ### 오토스케일 아웃
 앞서 CB 는 시스템을 안정되게 운영할 수 있게 해줬지만 사용자의 요청을 100% 받아들여주지 못했기 때문에 이에 대한 보완책으로 자동화된 확장 기능을 적용하고자 한다.
 
