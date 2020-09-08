@@ -55,14 +55,14 @@ mvn spring-boot:run</br>
 
 cd MyPage </br>
 mvn spring-boot:run </br>
-마이 페이지 : https://github.com/HyangminKim/Final_MyPage</br>
+마이 페이지 : https://github.com/HyangminKim/Final_MyPage</br>   
 
 
-<pre><code>상품상태: 01(available) 02(pending) soldOut
-예약상태: 01(reserved) 02(cancle)
-결제상태: 01(Unpaid) 02(Paid)</code></pre>
+<pre><code>Product Status: 01(available) 02(pending) soldout
+Reservation Status: 01(reserved) 02(cancle)
+Payment Status: 01(unpaid) 02(paid)</code></pre>
 
-**1.판매자가 상품을 등록한다. **
+####1.판매자가 상품을 등록한다.
 <pre><code>http http://localhost:8081/product productName=Noodle productStatus=01
 http http://localhost:8081/product productName=Desk productStatus=01
 http http://localhost:8081/product productName=Coffee productStatus=01</code></pre>
