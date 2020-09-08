@@ -106,7 +106,7 @@ http http://reservation:8080/reservation productId=2 reservationStatus=01</code>
 ![image](https://user-images.githubusercontent.com/61259464/92431177-c8f24180-f1d1-11ea-9274-d6cbc806b72b.png)
 
 ### POD 실행 화면
-![image](https://user-images.githubusercontent.com/61259464/92442372-b9cbbd80-f1ea-11ea-8d4b-747e81bfbeec.png)
+![image](https://user-images.githubusercontent.com/61259464/92466876-b72d9000-f20b-11ea-8e49-5e6cfd6883fe.png)
 
 ### CI/CD 설정
 각 구현체들은 각자의 Git을 통해 빌드되며, Git Master에 트리거 되어 있다. pipeline build script 는 각 프로젝트 폴더 이하에 azure_pipeline.yml 에 포함되었다.
