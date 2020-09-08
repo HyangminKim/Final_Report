@@ -81,9 +81,13 @@ http http://localhost:8082/reservation productId=2 reservationStatus=01</code></
 ![image](https://user-images.githubusercontent.com/61259464/92431177-c8f24180-f1d1-11ea-9274-d6cbc806b72b.png)
 
 ### POD 실행 화면
-![image](https://user-images.githubusercontent.com/61259464/92431121-9cd6c080-f1d1-11ea-9718-5135b39d7a02.png)
+![image](https://user-images.githubusercontent.com/61259464/92436869-aa477700-f1e0-11ea-8fa9-2ab6736ecdd5.png)
 
 ### 구현
+<pre><code>http http://localhost:8081/product productName=Noodle productStatus=01
+http http://localhost:8081/product productName=Desk productStatus=01
+http http://localhost:8081/product productName=Coffee productStatus=01</code></pre>
+결과(product)</br>
 
 ### CI/CD 설정
 각 구현체들은 각자의 Git을 통해 빌드되며, Git Master에 트리거 되어 있다. pipeline build script 는 각 프로젝트 폴더 이하에 azure_pipeline.yml 에 포함되었다.
