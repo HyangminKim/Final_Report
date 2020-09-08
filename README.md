@@ -57,19 +57,6 @@ cd MyPage </br>
 mvn spring-boot:run </br>
 마이 페이지 : https://github.com/HyangminKim/Final_MyPage</br>   
 
-
-<pre><code>Product Status: 01(available) 02(pending) soldout
-Reservation Status: 01(reserved) 02(cancle)
-Payment Status: 01(unpaid) 02(paid)</code></pre>
-
-운영
-============
-### 파이프라인
-![image](https://user-images.githubusercontent.com/61259464/92431177-c8f24180-f1d1-11ea-9274-d6cbc806b72b.png)
-
-### POD 실행 화면
-![image](https://user-images.githubusercontent.com/61259464/92437364-b08a2300-f1e1-11ea-8965-802ecbe92f17.png)
-
 ### 구현
 #### 1.판매자가 상품을 등록한다.
 <pre><code>http http://product:8080/product productName=Phone productStatus=01
@@ -109,6 +96,14 @@ http http://reservation:8080/reservation productId=2 reservationStatus=01</code>
 ### 9. 구매자는 예약 및 결제 상태를 중간중간 조회한다
 결과(MyPage)</br>
 ![image](https://user-images.githubusercontent.com/61259464/92438783-6ce4e880-f1e4-11ea-9bbf-3827d2820618.png)
+
+운영
+============
+### 파이프라인
+![image](https://user-images.githubusercontent.com/61259464/92431177-c8f24180-f1d1-11ea-9274-d6cbc806b72b.png)
+
+### POD 실행 화면
+![image](https://user-images.githubusercontent.com/61259464/92437364-b08a2300-f1e1-11ea-8965-802ecbe92f17.png)
 
 ### CI/CD 설정
 각 구현체들은 각자의 Git을 통해 빌드되며, Git Master에 트리거 되어 있다. pipeline build script 는 각 프로젝트 폴더 이하에 azure_pipeline.yml 에 포함되었다.
