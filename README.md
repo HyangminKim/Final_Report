@@ -62,7 +62,7 @@ mvn spring-boot:run </br>
 Reservation Status: 01(reserved) 02(cancle)
 Payment Status: 01(unpaid) 02(paid)</code></pre>
 
-####1.판매자가 상품을 등록한다.
+#### 1.판매자가 상품을 등록한다.
 <pre><code>http http://localhost:8081/product productName=Noodle productStatus=01
 http http://localhost:8081/product productName=Desk productStatus=01
 http http://localhost:8081/product productName=Coffee productStatus=01</code></pre>
