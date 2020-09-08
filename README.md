@@ -25,6 +25,7 @@
 분석설계
 ============ 
 MSAEz 로 모델링한 이벤트스토밍 결과: <br>
+http://msaez.io/#/storming/cVNuZs0oJidKR8D7ZWW4anjQhQA2/mine/83e2fd722bb1a93822e7e29d47db0227/-M5Tg016oQ03UwFRn94Q
 ![image](https://user-images.githubusercontent.com/61259464/92362165-8d506c80-f12a-11ea-8079-50401ef08a83.png)
 
 
