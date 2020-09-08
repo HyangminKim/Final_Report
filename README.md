@@ -67,5 +67,9 @@ Payment Status: 01(unpaid) 02(paid)</code></pre>
 http http://localhost:8081/product productName=Desk productStatus=01
 http http://localhost:8081/product productName=Coffee productStatus=01</code></pre>
 결과(product)</br>
-![image](https://user-images.githubusercontent.com/61259464/92427678-136ec080-f1c8-11ea-97ac-109b52be95d7.png)(./pic/pic1s.png =250x)
+![image](https://user-images.githubusercontent.com/61259464/92427678-136ec080-f1c8-11ea-97ac-109b52be95d7.png)
 
+#### 2.고객은 등록된 상품을 예약한다
+<pre><code>http http://localhost:8082/reservation productId=1 reservationStatus=01
+http http://localhost:8082/reservation productId=2 reservationStatus=01</code></pre>
+결과(product)</br>
