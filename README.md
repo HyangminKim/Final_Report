@@ -58,26 +58,30 @@ mvn spring-boot:run </br>
 마이 페이지 : https://github.com/HyangminKim/Final_MyPage</br>   
 
 ### 구현
+<pre><code>상품상태: 01(available) 02(pending) soldOut
+예약상태: 01(reserved) 02(cancle)
+결제상태: 01(Unpaid) 02(Paid)</code></pre>
+
 #### 1.판매자가 상품을 등록한다.
 <pre><code>http http://product:8080/product productName=Phone productStatus=01
 http http://product:8080/product  productName=Tv productStatus=01
 http http://product:8080/product  productName=Coffee productStatus=01</code></pre>
 결과(product)</br>
-![image](https://user-images.githubusercontent.com/61259464/92437812-a74d8600-f1e2-11ea-8913-b5a2418ebb2f.png)
+![image](https://user-images.githubusercontent.com/61259464/92440354-55f3c580-f1e7-11ea-89ff-070f46846777.png)
 
 #### 2.고객은 등록된 상품을 예약한다
 <pre><code>http http://reservation:8080/reservation productId=3 reservationStatus=01
 http http://reservation:8080/reservation productId=2 reservationStatus=01</code></pre>
 결과(Reservation)</br>
-![image](https://user-images.githubusercontent.com/61259464/92438260-6e61e100-f1e3-11ea-8d07-3ca1c8cd1add.png)
+![image](https://user-images.githubusercontent.com/61259464/92440584-b1be4e80-f1e7-11ea-95e0-2f13eb430330.png)
 
 #### 3. 예약 후 상품 상태가 변경 된다
 결과(Product)</br>
-![image](https://user-images.githubusercontent.com/61259464/92438303-85083800-f1e3-11ea-86e0-c37ec6a85976.png)
+![image](https://user-images.githubusercontent.com/61259464/92440819-0b267d80-f1e8-11ea-9b4f-00e2a858413f.png)
 
 #### 4. 예약 후 결제 정보가 생성 된다
 결과(Payment)</br>
-![image](https://user-images.githubusercontent.com/61259464/92438378-a8cb7e00-f1e3-11ea-82c9-ad2062f7e47c.png)
+![image](https://user-images.githubusercontent.com/61259464/92441104-8e47d380-f1e8-11ea-8f4e-27f4221a190f.png)
 
 ### 5. 구매자가 예약한 상품을 결제한다 
 <pre><code>http PATCH http://payment:8080/paid id=1 reservationId=1 productId=3 paymentStatus=02</code></pre>
@@ -85,17 +89,19 @@ http http://reservation:8080/reservation productId=2 reservationStatus=01</code>
 ![image](https://user-images.githubusercontent.com/61259464/92438412-b97bf400-f1e3-11ea-85c7-bd0d945a9e28.png)
 
 ### 6. 결제 후 상품 정보를 변경한다 
-결과(Product)</br>
-![image](https://user-images.githubusercontent.com/61259464/92438496-e7613880-f1e3-11ea-8473-d2340f7297bf.png)
+결과(Reservation, Product)</br>
+![image](https://user-images.githubusercontent.com/61259464/92441249-d666f600-f1e8-11ea-9744-f9e0650b34f8.png)
+</br>
+![image](https://user-images.githubusercontent.com/61259464/92441416-25149000-f1e9-11ea-9258-dd75515370ba.png)
 
 ### 7. 구매자가 예약을 취소한다, 8. 취소 후 상품 정보를 상태를 변경한다
-
+<pre><code>http PATCH http://reservation:8080/reservationupdate id=2 productId=1 reservationStatus=02</code></pre>
 결과(Reservation) type=Cancled</br>
-![image](https://user-images.githubusercontent.com/61259464/92438600-1aa3c780-f1e4-11ea-898a-617046c97a3d.png)
+![image](https://user-images.githubusercontent.com/61259464/92441639-876d9080-f1e9-11ea-90d0-1dd373b5739d.png)
 
 ### 9. 구매자는 예약 및 결제 상태를 중간중간 조회한다
 결과(MyPage)</br>
-![image](https://user-images.githubusercontent.com/61259464/92438783-6ce4e880-f1e4-11ea-9bbf-3827d2820618.png)
+![image](https://user-images.githubusercontent.com/61259464/92441867-ec28eb00-f1e9-11ea-9337-15e77c39a93b.png)
 
 운영
 ============
