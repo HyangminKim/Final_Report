@@ -73,3 +73,15 @@ http http://localhost:8081/product productName=Coffee productStatus=01</code></p
 <pre><code>http http://localhost:8082/reservation productId=1 reservationStatus=01
 http http://localhost:8082/reservation productId=2 reservationStatus=01</code></pre>
 결과(product)</br>
+
+
+운영
+============
+### 파이프라인
+![image](https://user-images.githubusercontent.com/61259464/92431177-c8f24180-f1d1-11ea-9274-d6cbc806b72b.png)
+
+### POD 실행 화면
+![image](https://user-images.githubusercontent.com/61259464/92431121-9cd6c080-f1d1-11ea-9718-5135b39d7a02.png)
+
+### 구현
+
