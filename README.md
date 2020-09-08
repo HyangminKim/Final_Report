@@ -62,19 +62,6 @@ mvn spring-boot:run </br>
 Reservation Status: 01(reserved) 02(cancle)
 Payment Status: 01(unpaid) 02(paid)</code></pre>
 
-#### 1.판매자가 상품을 등록한다.
-<pre><code>http http://localhost:8081/product productName=Noodle productStatus=01
-http http://localhost:8081/product productName=Desk productStatus=01
-http http://localhost:8081/product productName=Coffee productStatus=01</code></pre>
-결과(product)</br>
-![image](https://user-images.githubusercontent.com/61259464/92427678-136ec080-f1c8-11ea-97ac-109b52be95d7.png)
-
-#### 2.고객은 등록된 상품을 예약한다
-<pre><code>http http://localhost:8082/reservation productId=1 reservationStatus=01
-http http://localhost:8082/reservation productId=2 reservationStatus=01</code></pre>
-결과(product)</br>
-
-
 운영
 ============
 ### 파이프라인
@@ -84,10 +71,44 @@ http http://localhost:8082/reservation productId=2 reservationStatus=01</code></
 ![image](https://user-images.githubusercontent.com/61259464/92437364-b08a2300-f1e1-11ea-8965-802ecbe92f17.png)
 
 ### 구현
-<pre><code>http http://localhost:8081/product productName=Noodle productStatus=01
-http http://localhost:8081/product productName=Desk productStatus=01
-http http://localhost:8081/product productName=Coffee productStatus=01</code></pre>
+#### 1.판매자가 상품을 등록한다.
+<pre><code>http http://product:8080/product productName=Phone productStatus=01
+http http://product:8080/product  productName=Tv productStatus=01
+http http://product:8080/product  productName=Coffee productStatus=01</code></pre>
 결과(product)</br>
+![image](https://user-images.githubusercontent.com/61259464/92437812-a74d8600-f1e2-11ea-8913-b5a2418ebb2f.png)
+
+#### 2.고객은 등록된 상품을 예약한다
+<pre><code>http http://reservation:8080/reservation productId=3 reservationStatus=01
+http http://reservation:8080/reservation productId=2 reservationStatus=01</code></pre>
+결과(Reservation)
+![image](https://user-images.githubusercontent.com/61259464/92438260-6e61e100-f1e3-11ea-8d07-3ca1c8cd1add.png)
+
+#### 3. 예약 후 상품 상태가 변경 된다
+결과(Product)
+![image](https://user-images.githubusercontent.com/61259464/92438303-85083800-f1e3-11ea-86e0-c37ec6a85976.png)
+
+#### 4. 예약 후 결제 정보가 생성 된다
+결과(Payment)
+![image](https://user-images.githubusercontent.com/61259464/92438378-a8cb7e00-f1e3-11ea-82c9-ad2062f7e47c.png)
+
+### 5. 구매자가 예약한 상품을 결제한다 
+<pre><code>http PATCH http://payment:8080/paid id=1 reservationId=1 productId=3 paymentStatus=02</code></pre>
+결과(Payment)
+![image](https://user-images.githubusercontent.com/61259464/92438412-b97bf400-f1e3-11ea-85c7-bd0d945a9e28.png)
+
+### 6. 결제 후 상품 정보를 변경한다 
+결과(Product)
+![image](https://user-images.githubusercontent.com/61259464/92438496-e7613880-f1e3-11ea-8473-d2340f7297bf.png)
+
+### 7. 구매자가 예약을 취소한다, 8. 취소 후 상품 정보를 상태를 변경한다
+
+결과(Reservation) type=Cancled
+![image](https://user-images.githubusercontent.com/61259464/92438600-1aa3c780-f1e4-11ea-898a-617046c97a3d.png)
+
+### 9. 구매자는 예약 및 결제 상태를 중간중간 조회한다
+결과(MyPage)
+![image](https://user-images.githubusercontent.com/61259464/92438783-6ce4e880-f1e4-11ea-9bbf-3827d2820618.png)
 
 ### CI/CD 설정
 각 구현체들은 각자의 Git을 통해 빌드되며, Git Master에 트리거 되어 있다. pipeline build script 는 각 프로젝트 폴더 이하에 azure_pipeline.yml 에 포함되었다.
